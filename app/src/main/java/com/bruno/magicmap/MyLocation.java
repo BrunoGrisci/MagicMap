@@ -7,37 +7,73 @@ import android.location.Location;
  */
 public class MyLocation {
 
-    private Location local;
+    private double latitude;
+    private double longitude;
     private String name;
+    private String address;
 
-    public MyLocation (Location startLocation, String startName) {
-        local = new Location(startLocation);
+    public MyLocation (double startLatitude, double startLongitude, String startName) {
+        latitude = startLatitude;
+        longitude = startLongitude;
         name = startName;
+        address = "";
+    }
+
+    public MyLocation (double startLatitude, double startLongitude, String startName, String startAddress) {
+        latitude = startLatitude;
+        longitude = startLongitude;
+        name = startName;
+        address = startAddress;
     }
 
     public MyLocation (MyLocation startMyLocal) {
-        local = new Location(startMyLocal.getLocation());
+        latitude = startMyLocal.getLatitude();
+        longitude = startMyLocal.getLongitude();
         name = startMyLocal.getName();
+        address = startMyLocal.getAddress();
     }
 
     public String getName() {
         return name;
     }
 
-    public Location getLocation() {
-        return local;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLocation(Location l) {
-        local.set(l);
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setLongitude(double lon) {
+        longitude = lon;
+    }
+
+    public void setLatitude(double lat) {
+        longitude = lat;
     }
 
     public void setName(String n) {
         name = n;
     }
 
+    public void setAddress(String a) {
+        address = a;
+    }
+
     public void set(MyLocation ml) {
-        this.setLocation(ml.getLocation());
+        this.setLatitude(ml.getLatitude());
+        this.setLongitude(ml.getLongitude());
         this.setName(ml.getName());
+        this.setAddress(ml.getAddress());
+    }
+
+    @Override
+    public String toString() {
+        return name + "\n" + address + "\n" + "Latitude: " + String.valueOf(latitude) + " Longitude: " + String.valueOf(longitude);
     }
 }

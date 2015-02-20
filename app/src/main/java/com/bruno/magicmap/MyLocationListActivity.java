@@ -1,11 +1,15 @@
 package com.bruno.magicmap;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.bruno.magicmap.R;
@@ -18,12 +22,15 @@ import java.util.ArrayList;
 /**
  * Created by bruno on 20/02/15.
  */
-public class MyLocationListActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MyLocationListActivity extends Activity {
 
     private ListView listMyLocations;
-    private ArrayList<String> arrayMyLocations = new ArrayList<String>();
-    GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
+    private ArrayList<MyLocation> arrayMyLocations = new ArrayList<MyLocation>();
+
+    private EditText locationNameInput;
+    private EditText locationLatitudeInput;
+    private EditText locationLongitudeInput;
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +40,28 @@ public class MyLocationListActivity extends Activity implements GoogleApiClient.
 
         listMyLocations = (ListView) findViewById(R.id.listMyLocations);
 
-        buildGoogleApiClient();
+        locationLatitudeInput = (EditText) findViewById(R.id.locationLatitudeInput);
+        locationLongitudeInput = (EditText) findViewById(R.id.locationLongitudeInput);
+        locationNameInput = (EditText) findViewById(R.id.locationNameInput);
+        saveButton = (Button) findViewById(R.id.newLocationButton);
 
-        arrayMyLocations.add("test");
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayMyLocations);
+        final ArrayAdapter<MyLocation> adapter = new ArrayAdapter<MyLocation>(this, android.R.layout.simple_list_item_1, arrayMyLocations);
         listMyLocations.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+            public void onClick(View v) {
+
+                if (!locationLatitudeInput.getText().toString().isEmpty() && !locationLongitudeInput.getText().toString().isEmpty() && !locationLatitudeInput.getText().toString().isEmpty()) {
+                    double lat = Double.valueOf(locationLatitudeInput.getText().toString());
+                    double lon = Double.valueOf(locationLongitudeInput.getText().toString());
+                    String name = locationNameInput.getText().toString();
+                    arrayMyLocations.add(new MyLocation(lat, lon, name));
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+        });
 
         listMyLocations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -48,31 +70,6 @@ public class MyLocationListActivity extends Activity implements GoogleApiClient.
 
             }
         });
-
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        mLastLocation = new Location(LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient));
-        if (mLastLocation != null) {
-            System.out.println(String.valueOf(mLastLocation.getLatitude()));
-            System.out.println(String.valueOf(mLastLocation.getLongitude()));
-
-            MyLocation l1 = new MyLocation(mLastLocation, "here");
-
-            System.out.println(l1.getName());
-            System.out.println(l1.getLocation().getLongitude());
-
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectedResult) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
 
     }
 
@@ -86,13 +83,6 @@ public class MyLocationListActivity extends Activity implements GoogleApiClient.
         super.onPause();
     }
 
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        mGoogleApiClient.connect();
-    }
+
 
 }
