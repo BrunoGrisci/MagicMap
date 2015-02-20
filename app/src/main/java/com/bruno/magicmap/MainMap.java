@@ -1,54 +1,38 @@
 package com.bruno.magicmap;
 
+import android.app.TabActivity;
+import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TabHost;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 
-public class MainMap extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
-    GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
+//public class MainMap extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainMap extends TabActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Removes the action bar from the app
+        //supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_map);
-        buildGoogleApiClient();
+        //setContentView(R.layout.activity_main_map);
 
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
-            System.out.println(String.valueOf(mLastLocation.getLatitude()));
-            System.out.println(String.valueOf(mLastLocation.getLongitude()));
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
+        TabHost mTabHost = getTabHost();
+        mTabHost.addTab(mTabHost.newTabSpec("first").setIndicator(getResources().getString(R.string.tabWelcomeScreen)).setContent(new Intent(this, WelcomeScreenActivity.class )));
+        mTabHost.addTab(mTabHost.newTabSpec("second").setIndicator(getResources().getString(R.string.tabMyLocationList)).setContent(new Intent(this, MyLocationListActivity.class )));
+        mTabHost.addTab(mTabHost.newTabSpec("third").setIndicator(getResources().getString(R.string.tabRemindersList)).setContent(new Intent(this, RemindersListActivity.class)));
+        mTabHost.setCurrentTab(0);
 
     }
 
