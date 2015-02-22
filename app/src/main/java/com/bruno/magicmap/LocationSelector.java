@@ -64,6 +64,8 @@ public class LocationSelector extends ActionBarActivity {
                 intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_LONGITUDE), newLocation.getLongitude());
                 intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_LOCATION_NAME), newLocation.getName());
                 intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_ADDRESS), newLocation.getAddress());
+                intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_CAMERA_LATITUDE), map.getCameraPosition().target.latitude);
+                intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_CAMERA_LONGITUDE), map.getCameraPosition().target.longitude);
                 setResult(RESULT_OK, intent);
                 finish();
 

@@ -1,0 +1,134 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.bruno.magicmap.ReminderCreator">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Name"
+                android:id="@+id/nameReminderLabel" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:id="@+id/nameReminderEdit" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Message"
+                android:id="@+id/messageReminderLabel" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/messageReminderEdit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Location"
+                android:id="@+id/locationReminderLabel" />
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:id="@+id/locationReminderEdit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Distance around location in metres"
+                android:id="@+id/circularRadiusReminderLabel" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/circularRadiusReminderEdit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Time after entering location"
+                android:id="@+id/delayTimeReminderLabel" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/delayTimeReminderEdit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="SAVE REMINDER"
+                android:id="@+id/saveRemiderButton" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

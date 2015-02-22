@@ -113,6 +113,8 @@ public class MyLocationListActivity extends Activity {
                 Double longitude = data.getDoubleExtra(getResources().getString(R.string.EXTRA_MESSAGE_LONGITUDE), 0.0);
                 String name = data.getStringExtra(getResources().getString(R.string.EXTRA_MESSAGE_LOCATION_NAME));
                 String address = data.getStringExtra(getResources().getString(R.string.EXTRA_MESSAGE_ADDRESS));
+                Double camLat = data.getDoubleExtra(getResources().getString(R.string.EXTRA_MESSAGE_CAMERA_LATITUDE), 0.0);
+                Double camLon = data.getDoubleExtra(getResources().getString(R.string.EXTRA_MESSAGE_CAMERA_LONGITUDE), 0.0);
                 arrayMyLocations.add(new MyLocation(latitude, longitude, name, address));
                 adapter.notifyDataSetChanged();
 
@@ -120,6 +122,9 @@ public class MyLocationListActivity extends Activity {
                         .position(new LatLng(latitude, longitude))
                         .title(name)
                         .snippet(address));
+
+                originCam = CameraUpdateFactory.newLatLng(new LatLng(camLat, camLon));
+                map.moveCamera(originCam);
 
             }
             if (resultCode == RESULT_CANCELED) {

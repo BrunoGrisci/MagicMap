@@ -12,4 +12,8 @@
     <string name="EXTRA_MESSAGE_LONGITUDE">com.bruno.magicmap.MESSAGE_LONGITUDE</string>
     <string name="EXTRA_MESSAGE_LOCATION_NAME">com.bruno.magicmap.MESSAGE_LOCATION_NAME</string>
     <string name="EXTRA_MESSAGE_ADDRESS">com.bruno.magicmap.MESSAGE_ADDRESS</string>
+    <string name="EXTRA_MESSAGE_CAMERA_LATITUDE">com.bruno.magicmap.MESSAGE_CAMERA_LATITUDE</string>
+    <string name="EXTRA_MESSAGE_CAMERA_LONGITUDE">com.bruno.magicmap.MESSAGE_CAMERA_LONGITUDE</string>
+    <string name="title_activity_reminder_creator">ReminderCreator</string>
+
 </resources>
