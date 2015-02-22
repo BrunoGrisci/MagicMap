@@ -86,5 +86,9 @@ public class Reminder {
     public Geofence getGeofence() {
         return geofence;
     }
-    
+
+    @Override
+    public String toString() {
+        return name + "\n" + location.getName() + "\n" + message;
+    }
 }

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bruno.magicmap" >
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <permission android:name="com.maret.maps.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
     <uses-permission android:name="com.maret.maps.permission.MAPS_RECEIVE"/>
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -26,6 +32,9 @@
         <activity android:name=".WelcomeScreenActivity"></activity>
         <activity android:name=".MyLocationListActivity"></activity>
         <activity android:name=".RemindersListActivity"></activity>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBz4jIx0IcHPoFwYXrBnwvoeYwM0X7TznQ"/>
     </application>
 
 </manifest>

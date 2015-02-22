@@ -2,6 +2,7 @@ package com.bruno.magicmap;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,13 +12,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bruno.magicmap.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by bruno on 20/02/15.
@@ -31,6 +38,9 @@ public class MyLocationListActivity extends Activity {
     private EditText locationLatitudeInput;
     private EditText locationLongitudeInput;
     private Button saveButton;
+    private MapFragment mapFragment;
+    private GoogleMap map;
+    //private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,19 @@ public class MyLocationListActivity extends Activity {
         locationLongitudeInput = (EditText) findViewById(R.id.locationLongitudeInput);
         locationNameInput = (EditText) findViewById(R.id.locationNameInput);
         saveButton = (Button) findViewById(R.id.newLocationButton);
+
+        //mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
+        //map = mapFragment.getMap();
+
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+                Toast.makeText(getApplicationContext(), point.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         final ArrayAdapter<MyLocation> adapter = new ArrayAdapter<MyLocation>(this, android.R.layout.simple_list_item_1, arrayMyLocations);
         listMyLocations.setAdapter(adapter);
