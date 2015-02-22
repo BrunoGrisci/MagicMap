@@ -7,4 +7,9 @@
     <string name="tabMyLocationList">My Locations</string>
     <string name="tabRemindersList">My Reminders</string>
     <string name="title_activity_location_selector">LocationSelector</string>
+
+    <string name="EXTRA_MESSAGE_LATITUDE">com.bruno.magicmap.MESSAGE_LATITUDE</string>
+    <string name="EXTRA_MESSAGE_LONGITUDE">com.bruno.magicmap.MESSAGE_LONGITUDE</string>
+    <string name="EXTRA_MESSAGE_LOCATION_NAME">com.bruno.magicmap.MESSAGE_LOCATION_NAME</string>
+    <string name="EXTRA_MESSAGE_ADDRESS">com.bruno.magicmap.MESSAGE_ADDRESS</string>
 </resources>

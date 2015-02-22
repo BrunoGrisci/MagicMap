@@ -43,7 +43,6 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBz4jIx0IcHPoFwYXrBnwvoeYwM0X7TznQ" />
-
         <activity
             android:name=".LocationSelector"
             android:label="@string/title_activity_location_selector" >
