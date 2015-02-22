@@ -3,6 +3,7 @@ package com.bruno.magicmap;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,16 +32,13 @@ import java.util.Map;
  */
 public class MyLocationListActivity extends Activity {
 
+    public final static String EXTRA_MESSAGE = "com.bruno.magicmap.MESSAGE";
+
     private ListView listMyLocations;
     private ArrayList<MyLocation> arrayMyLocations = new ArrayList<MyLocation>();
 
-    private EditText locationNameInput;
-    private EditText locationLatitudeInput;
-    private EditText locationLongitudeInput;
-    private Button saveButton;
-    private MapFragment mapFragment;
+    private Button newLocationButton;
     private GoogleMap map;
-    //private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +47,9 @@ public class MyLocationListActivity extends Activity {
         setContentView(R.layout.mylocation_list_layout);
 
         listMyLocations = (ListView) findViewById(R.id.listMyLocations);
-
-        locationLatitudeInput = (EditText) findViewById(R.id.locationLatitudeInput);
-        locationLongitudeInput = (EditText) findViewById(R.id.locationLongitudeInput);
-        locationNameInput = (EditText) findViewById(R.id.locationNameInput);
-        saveButton = (Button) findViewById(R.id.newLocationButton);
-
-        //mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
-        //map = mapFragment.getMap();
+        newLocationButton = (Button) findViewById(R.id.newLocationButton);
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
@@ -71,7 +61,7 @@ public class MyLocationListActivity extends Activity {
         final ArrayAdapter<MyLocation> adapter = new ArrayAdapter<MyLocation>(this, android.R.layout.simple_list_item_1, arrayMyLocations);
         listMyLocations.setAdapter(adapter);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        /*newLocationButton.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             public void onClick(View v) {
 
@@ -80,11 +70,12 @@ public class MyLocationListActivity extends Activity {
                     double lon = Double.valueOf(locationLongitudeInput.getText().toString());
                     String name = locationNameInput.getText().toString();
                     arrayMyLocations.add(new MyLocation(lat, lon, name));
-                    adapter.notifyDataSetChanged();
+
                 }
+                adapter.notifyDataSetChanged();
 
             }
-        });
+        });*/
 
         listMyLocations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -106,6 +97,10 @@ public class MyLocationListActivity extends Activity {
         super.onPause();
     }
 
-
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, LocationSelector.class);
+        intent.putExtra(EXTRA_MESSAGE, "nothing");
+        startActivity(intent);
+    }
 
 }

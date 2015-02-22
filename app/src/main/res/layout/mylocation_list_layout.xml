@@ -10,60 +10,36 @@
         android:layout_gravity="center_horizontal">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/newLocationButton" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1"
+            <FrameLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
 
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/locationNameInput" />
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:name="com.google.android.gms.maps.MapFragment"/>
+            </FrameLayout>
 
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/locationLatitudeInput" />
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:text="NEW LOCATION"
+                android:onClick="sendMessage"
+                android:id="@+id/newLocationButton"
+                android:layout_weight="1"/>
 
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/locationLongitudeInput" />
-
-                <FrameLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/map"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:name="com.google.android.gms.maps.MapFragment"/>
-
-                </FrameLayout>
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 

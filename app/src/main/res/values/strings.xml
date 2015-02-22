@@ -6,4 +6,5 @@
     <string name="tabWelcomeScreen">Magic Map</string>
     <string name="tabMyLocationList">My Locations</string>
     <string name="tabRemindersList">My Reminders</string>
+    <string name="title_activity_location_selector">LocationSelector</string>
 </resources>
