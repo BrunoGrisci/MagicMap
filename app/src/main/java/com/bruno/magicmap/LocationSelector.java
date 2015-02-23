@@ -59,7 +59,7 @@ public class LocationSelector extends ActionBarActivity {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, MyLocationListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MyLocationListActivity.class);
                 intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_LATITUDE), newLocation.getLatitude());
                 intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_LONGITUDE), newLocation.getLongitude());
                 intent.putExtra(getResources().getString(R.string.EXTRA_MESSAGE_LOCATION_NAME), newLocation.getName());

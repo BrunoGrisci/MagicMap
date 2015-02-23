@@ -89,6 +89,6 @@ public class Reminder {
 
     @Override
     public String toString() {
-        return name + "\n" + location.getName() + "\n" + message;
+        return name + " in " + location.getName() + "\n" + message;
     }
 }

@@ -53,6 +53,7 @@ public class RemindersListActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -71,7 +72,15 @@ public class RemindersListActivity extends Activity {
         if (requestCode == PICK_REMINDER_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-
+                int indexLocation = data.getIntExtra(getResources().getString(R.string.EXTRA_MESSAGE_REMINDER_LOCATION_INDEX), -1);
+                if (indexLocation >= 0) {
+                    String name = data.getStringExtra(getResources().getString(R.string.EXTRA_MESSAGE_REMINDER_NAME));
+                    String message = data.getStringExtra(getResources().getString(R.string.EXTRA_MESSAGE_REMINDER_MESSAGE));
+                    float circularRadius = data.getFloatExtra(getResources().getString(R.string.EXTRA_MESSAGE_REMINDER_RADIUS), 0);
+                    int delayTime = data.getIntExtra(getResources().getString(R.string.EXTRA_MESSAGE_REMINDER_DELAY_TIME), 0);
+                    arrayMyReminders.add(new Reminder(MyLocationListActivity.arrayMyLocations.get(indexLocation), name, message, circularRadius, delayTime));
+                    adapter.notifyDataSetChanged();
+                }
             }
             if (resultCode == RESULT_CANCELED) {
                 System.out.println("CANCELED");

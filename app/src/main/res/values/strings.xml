@@ -7,6 +7,7 @@
     <string name="tabMyLocationList">My Locations</string>
     <string name="tabRemindersList">My Reminders</string>
     <string name="title_activity_location_selector">LocationSelector</string>
+    <string name="title_activity_reminder_creator">ReminderCreator</string>
 
     <string name="EXTRA_MESSAGE_LATITUDE">com.bruno.magicmap.MESSAGE_LATITUDE</string>
     <string name="EXTRA_MESSAGE_LONGITUDE">com.bruno.magicmap.MESSAGE_LONGITUDE</string>
@@ -14,6 +15,12 @@
     <string name="EXTRA_MESSAGE_ADDRESS">com.bruno.magicmap.MESSAGE_ADDRESS</string>
     <string name="EXTRA_MESSAGE_CAMERA_LATITUDE">com.bruno.magicmap.MESSAGE_CAMERA_LATITUDE</string>
     <string name="EXTRA_MESSAGE_CAMERA_LONGITUDE">com.bruno.magicmap.MESSAGE_CAMERA_LONGITUDE</string>
-    <string name="title_activity_reminder_creator">ReminderCreator</string>
+
+    <string name="EXTRA_MESSAGE_REMINDER_NAME">com.bruno.magicmap.MESSAGE_REMINDER_NAME</string>
+    <string name="EXTRA_MESSAGE_REMINDER_MESSAGE">com.bruno.magicmap.MESSAGE_REMINDER_MESSAGE</string>
+    <string name="EXTRA_MESSAGE_REMINDER_RADIUS">com.bruno.magicmap.MESSAGE_REMINDER_RADIUS</string>
+    <string name="EXTRA_MESSAGE_REMINDER_DELAY_TIME">com.bruno.magicmap.MESSAGE_REMINDER_DELAY_TIME</string>
+    <string name="EXTRA_MESSAGE_REMINDER_LOCATION_INDEX">com.bruno.magicmap.MESSAGE_REMINDER_LOCATION_INDEX</string>
+
 
 </resources>

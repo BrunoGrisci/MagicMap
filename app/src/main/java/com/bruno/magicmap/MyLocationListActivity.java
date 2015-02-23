@@ -3,6 +3,7 @@ package com.bruno.magicmap;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -39,7 +41,7 @@ public class MyLocationListActivity extends Activity {
     static final int PICK_LOCATION_REQUEST = 1;
 
     private ListView listMyLocations;
-    private ArrayList<MyLocation> arrayMyLocations = new ArrayList<MyLocation>();
+    public static ArrayList<MyLocation> arrayMyLocations = new ArrayList<MyLocation>();
     private ArrayAdapter<MyLocation> adapter;
 
     private Button newLocationButton;
@@ -99,7 +101,6 @@ public class MyLocationListActivity extends Activity {
 
     public void sendMessage(View view) {
         Intent intent = new Intent(this, LocationSelector.class);
-        //intent.putExtra(EXTRA_MESSAGE, "nothing");
         startActivityForResult(intent, PICK_LOCATION_REQUEST);
     }
 
