@@ -15,7 +15,7 @@ public class Reminder {
     private int delayTime;
 
     private Geofence.Builder fencer;
-    private Geofence geofence;
+    //private Geofence geofence;
 
     public Reminder (MyLocation startLocation, String startName, String startMessage, float startCircularRadius, int startDelayTime) {
         location = new MyLocation(startLocation);
@@ -60,7 +60,7 @@ public class Reminder {
         fencer.setNotificationResponsiveness(0);
         fencer.setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER);
 
-        geofence = fencer.build();
+        //geofence = fencer.build();
     }
 
     public MyLocation getLocation() {
@@ -83,8 +83,8 @@ public class Reminder {
         return delayTime;
     }
 
-    public Geofence getGeofence() {
-        return geofence;
+    public Geofence.Builder getGeofenceBuilder() {
+        return fencer;
     }
 
     @Override

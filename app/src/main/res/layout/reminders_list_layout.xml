@@ -3,24 +3,51 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="NEW REMINDER"
-        android:onClick="sendMessage"
-        android:id="@+id/newReminderButton" />
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal">
 
     <LinearLayout
         android:orientation="vertical"
+        android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="12">
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mapReminder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.google.android.gms.maps.MapFragment"/>
+        </FrameLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:text="NEW REMINDER"
+            android:onClick="sendMessage"
+            android:id="@+id/newReminderButton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="1.5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/listMyReminders" />
     </LinearLayout>
+</LinearLayout>
 
 </LinearLayout>
