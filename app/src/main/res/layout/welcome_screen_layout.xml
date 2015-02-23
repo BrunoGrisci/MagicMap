@@ -35,19 +35,41 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp">
 
-            <TextClock
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:id="@+id/textClock" />
+                android:layout_weight="1">
 
-            <TextView
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Current Location: "
+                    android:id="@+id/labelCurrentLocation" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/textCurrentLocation" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textCurrentLocation" />
+                android:layout_weight="1">
+
+                <TextClock
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/textClock" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

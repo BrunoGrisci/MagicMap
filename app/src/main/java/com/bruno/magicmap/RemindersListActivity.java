@@ -36,7 +36,7 @@ public class RemindersListActivity extends Activity {
     static final int PICK_REMINDER_REQUEST = 2;
 
     private ListView listMyReminders;
-    private ArrayList<Reminder> arrayMyReminders = new ArrayList<Reminder>();
+    public static ArrayList<Reminder> arrayMyReminders = new ArrayList<Reminder>();
     private ArrayAdapter<Reminder> adapter;
     public static String jsonRemindersList;
     Gson gson = new Gson();
@@ -84,6 +84,8 @@ public class RemindersListActivity extends Activity {
                 Toast.makeText(getApplicationContext(), point.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        loadReminderList();
 
     }
 
@@ -152,6 +154,7 @@ public class RemindersListActivity extends Activity {
             arrayMyReminders.clear();
             arrayMyReminders.addAll(remList);
             adapter.notifyDataSetChanged();
+            updateMapMarks();
         }
 
     }
@@ -164,7 +167,6 @@ public class RemindersListActivity extends Activity {
             List<MyLocation> locList = gson.fromJson(MyLocationListActivity.jsonMyLocationsList, type);
             MyLocationListActivity.arrayMyLocations.clear();
             MyLocationListActivity.arrayMyLocations.addAll(locList);
-            updateMapMarks();
         }
     }
 
