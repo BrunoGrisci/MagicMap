@@ -2,8 +2,10 @@ package com.bruno.magicmap;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -86,11 +88,60 @@ public class MyLocationListActivity extends Activity {
         adapter = new ArrayAdapter<MyLocation>(this, android.R.layout.simple_list_item_1, arrayMyLocations);
         listMyLocations.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        listMyLocations.setClickable(true);
+        listMyLocations.setLongClickable(true);
         listMyLocations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
+            }
+        });
+
+        listMyLocations.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, final View view,
+                                           final int position, long id) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(MyLocationListActivity.this);
+                builder1.setTitle("Delete location?");
+                builder1.setMessage("This will also delete all reminders in this location.");
+                builder1.setCancelable(true);
+                builder1.setPositiveButton("Delete",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                loadReminderList();
+                                if (!RemindersListActivity.arrayMyReminders.isEmpty()) {
+                                    String locName = arrayMyLocations.get(position).getName();
+                                    ArrayList<Reminder> delRem = new ArrayList<Reminder>();
+                                    for (Reminder rem : RemindersListActivity.arrayMyReminders) {
+                                        if (rem.getLocation().getName().equals(locName)) {
+                                            delRem.add(rem);
+                                        }
+                                    }
+                                    RemindersListActivity.arrayMyReminders.removeAll(delRem);
+                                    saveReminderList();
+                                }
+
+                                arrayMyLocations.remove(position);
+                                adapter.notifyDataSetChanged();
+                                saveLocationList();
+                                updateMapMarks();
+
+                                dialog.cancel();
+                            }
+                        });
+                builder1.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
+                return true;
             }
         });
 
@@ -141,8 +192,8 @@ public class MyLocationListActivity extends Activity {
     }
 
     protected void updateMapMarks() {
+        map.clear();
         if(!arrayMyLocations.isEmpty()) {
-            map.clear();
             for (MyLocation loc : arrayMyLocations) {
                 map.addMarker(new MarkerOptions()
                         .position(new LatLng(loc.getLatitude(), loc.getLongitude()))
@@ -155,15 +206,13 @@ public class MyLocationListActivity extends Activity {
     }
 
     protected void saveLocationList() {
-        if (!arrayMyLocations.isEmpty()) {
-            jsonMyLocationsList = gson.toJson(arrayMyLocations);
-            Log.d("TAG", "jsonMyLocationList = " + jsonMyLocationsList);
+        jsonMyLocationsList = gson.toJson(arrayMyLocations);
+        Log.d("TAG", "jsonMyLocationList = " + jsonMyLocationsList);
 
-            SharedPreferences savedLocationList = getSharedPreferences(getResources().getString(R.string.SAVED_LOCATION_LIST), MODE_PRIVATE);
-            SharedPreferences.Editor editorList = savedLocationList.edit();
-            editorList.putString(getResources().getString(R.string.SAVED_LOCATION_LIST), jsonMyLocationsList);
-            editorList.commit();
-        }
+        SharedPreferences savedLocationList = getSharedPreferences(getResources().getString(R.string.SAVED_LOCATION_LIST), MODE_PRIVATE);
+        SharedPreferences.Editor editorList = savedLocationList.edit();
+        editorList.putString(getResources().getString(R.string.SAVED_LOCATION_LIST), jsonMyLocationsList);
+        editorList.commit();
     }
 
     protected void loadLocationList() {
@@ -178,6 +227,27 @@ public class MyLocationListActivity extends Activity {
             System.out.println(locList.toString());
             updateMapMarks();
         }
+    }
+
+    protected void loadReminderList() {
+        SharedPreferences savedReminderList = getSharedPreferences(getResources().getString(R.string.SAVED_REMINDER_LIST), MODE_PRIVATE);
+        RemindersListActivity.jsonRemindersList = savedReminderList.getString(getResources().getString(R.string.SAVED_REMINDER_LIST), null);
+        if (RemindersListActivity.jsonRemindersList != null) {
+            Type type = new TypeToken<List<Reminder>>(){}.getType();
+            List<Reminder> remList = gson.fromJson(RemindersListActivity.jsonRemindersList, type);
+            RemindersListActivity.arrayMyReminders.clear();
+            RemindersListActivity.arrayMyReminders.addAll(remList);
+        }
+    }
+
+    protected void saveReminderList() {
+        String jsonRemindersList;
+        jsonRemindersList = gson.toJson(RemindersListActivity.arrayMyReminders);
+
+        SharedPreferences savedReminderList = getSharedPreferences(getResources().getString(R.string.SAVED_REMINDER_LIST), MODE_PRIVATE);
+        SharedPreferences.Editor editorList = savedReminderList.edit();
+        editorList.putString(getResources().getString(R.string.SAVED_REMINDER_LIST), jsonRemindersList);
+        editorList.commit();
     }
 
 }

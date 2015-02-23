@@ -25,5 +25,10 @@
     <string name="SAVED_LOCATION_LIST">SAVED_LOCATION_LIST</string>
     <string name="SAVED_REMINDER_LIST">SAVED_REMINDER_LIST</string>
 
+    <string name="SAVED_USER_LOCATION">SAVED_USER_LOCATION</string>
+    <string name="SAVED_USER_LATITUDE">SAVED_USER_LATITUDE</string>
+    <string name="SAVED_USER_LONGITUDE">SAVED_USER_LONGITUDE</string>
+    <string name="SAVED_USER_ACCURACY">SAVED_USER_ACCURACY</string>
+
 
 </resources>

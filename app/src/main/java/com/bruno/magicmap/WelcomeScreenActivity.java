@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -30,11 +31,24 @@ public class WelcomeScreenActivity extends Activity {
     private CameraUpdate originZoom;
     private Location originLocation;
 
+    private TextView userLocation;
+
+    private double userLatitude;
+    private double userLongitude;
+    private double userAccuracy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView( R.layout.welcome_screen_layout );
+
+        userLocation = (TextView) findViewById(R.id.textCurrentLocation);
+
+        SharedPreferences savedUserLocation = getSharedPreferences(getResources().getString(R.string.SAVED_USER_LOCATION), MODE_PRIVATE);
+        userLatitude = savedUserLocation.getLong(Double.longBitsToDouble(getResources().getString(R.string.SAVED_USER_LATITUDE), 0.0));
+        userLongitude = savedUserLocation.getLong(Double.longBitsToDouble(getResources().getString(R.string.SAVED_USER_LONGITUDE), 0.0));
+        userAccuracy = savedUserLocation.getLong(Double.longBitsToDouble(getResources().getString(R.string.SAVED_USER_ACCURACY), 0.0));
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapWelcome)).getMap();
         map.getUiSettings().setZoomControlsEnabled(true);
@@ -91,8 +105,8 @@ public class WelcomeScreenActivity extends Activity {
     }
 
     protected void updateMapMarks() {
+        map.clear();
         if(!RemindersListActivity.arrayMyReminders.isEmpty()) {
-            map.clear();
             for (Reminder rem : RemindersListActivity.arrayMyReminders) {
                 LatLng position = new LatLng(rem.getLocation().getLatitude(), rem.getLocation().getLongitude());
                 map.addMarker(new MarkerOptions()

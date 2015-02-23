@@ -3,6 +3,7 @@ package com.bruno.magicmap;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -44,6 +45,13 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                     System.out.println(userLocation.getLatitude());
                     System.out.println(userLocation.getLongitude());
                     System.out.println(userLocation.getAccuracy());
+
+                    SharedPreferences savedUserLocation = getSharedPreferences(getResources().getString(R.string.SAVED_USER_LOCATION), MODE_PRIVATE);
+                    SharedPreferences.Editor editorList = savedUserLocation.edit();
+                    editorList.putLong(getResources().getString(R.string.SAVED_USER_LATITUDE), Double.doubleToRawLongBits(userLocation.getLatitude()));
+                    editorList.putLong(getResources().getString(R.string.SAVED_USER_LONGITUDE), Double.doubleToRawLongBits(userLocation.getLongitude()));
+                    editorList.putLong(getResources().getString(R.string.SAVED_USER_ACCURACY), Double.doubleToRawLongBits(userLocation.getAccuracy()));
+                    editorList.commit();
 
                 }
             }

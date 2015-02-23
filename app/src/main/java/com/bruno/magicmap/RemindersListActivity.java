@@ -1,6 +1,8 @@
 package com.bruno.magicmap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -62,11 +64,49 @@ public class RemindersListActivity extends Activity {
         adapter = new ArrayAdapter<Reminder>(this, android.R.layout.simple_list_item_1, arrayMyReminders);
         listMyReminders.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        listMyReminders.setClickable(true);
+        listMyReminders.setLongClickable(true);
         listMyReminders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
+
+            }
+        });
+
+        listMyReminders.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, final View view,
+                                        final int position, long id) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(RemindersListActivity.this);
+                builder1.setTitle("Delete reminder?");
+                builder1.setMessage("The location of this reminder won't be affected.");
+                builder1.setCancelable(true);
+                builder1.setPositiveButton("Delete",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                arrayMyReminders.remove(position);
+                                adapter.notifyDataSetChanged();
+                                saveReminderList();
+                                updateMapMarks();
+
+                                dialog.cancel();
+                            }
+                        });
+                builder1.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
+                return true;
             }
         });
 
@@ -134,15 +174,13 @@ public class RemindersListActivity extends Activity {
     }
 
     protected void saveReminderList() {
-        if (!arrayMyReminders.isEmpty()) {
-            jsonRemindersList = gson.toJson(arrayMyReminders);
-            Log.d("TAG", "jsonRemindersList = " + jsonRemindersList);
+        jsonRemindersList = gson.toJson(arrayMyReminders);
+        Log.d("TAG", "jsonRemindersList = " + jsonRemindersList);
 
-            SharedPreferences savedReminderList = getSharedPreferences(getResources().getString(R.string.SAVED_REMINDER_LIST), MODE_PRIVATE);
-            SharedPreferences.Editor editorList = savedReminderList.edit();
-            editorList.putString(getResources().getString(R.string.SAVED_REMINDER_LIST), jsonRemindersList);
-            editorList.commit();
-        }
+        SharedPreferences savedReminderList = getSharedPreferences(getResources().getString(R.string.SAVED_REMINDER_LIST), MODE_PRIVATE);
+        SharedPreferences.Editor editorList = savedReminderList.edit();
+        editorList.putString(getResources().getString(R.string.SAVED_REMINDER_LIST), jsonRemindersList);
+        editorList.commit();
     }
 
     protected void loadReminderList() {
@@ -171,8 +209,8 @@ public class RemindersListActivity extends Activity {
     }
 
     protected void updateMapMarks() {
+        map.clear();
         if(!arrayMyReminders.isEmpty()) {
-            map.clear();
             for (Reminder rem : arrayMyReminders) {
                 LatLng position = new LatLng(rem.getLocation().getLatitude(), rem.getLocation().getLongitude());
                 map.addMarker(new MarkerOptions()
