@@ -102,16 +102,16 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                                                     .setDefaults(Notification.DEFAULT_SOUND);
 
                                     Intent resultIntent = new Intent(MainMap.this, NotificationResult.class);
-                                    resultIntent.putExtra("userLatitude", userLocation.getLatitude());
-                                    resultIntent.putExtra("userLongitude", userLocation.getLongitude());
-                                    resultIntent.putExtra("targetName", rem.getLocation().getName());
-                                    resultIntent.putExtra("targetAddress", rem.getLocation().getAddress());
-                                    resultIntent.putExtra("notificationName", rem.getName());
-                                    resultIntent.putExtra("notificationMessage", rem.getMessage());
-                                    resultIntent.putExtra("targetLatitude", rem.getLocation().getLatitude());
-                                    resultIntent.putExtra("targetLongitude", rem.getLocation().getLongitude());
-                                    resultIntent.putExtra("targetRadius", rem.getCircularRadius());
-                                    resultIntent.putExtra("distance", distance);
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_USER_LATITUDE), userLocation.getLatitude());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_USER_LONGITUDE), userLocation.getLongitude());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_TARGET_NAME), rem.getLocation().getName());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_TARGET_ADDRESS), rem.getLocation().getAddress());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_NAME), rem.getName());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_MESSAGE), rem.getMessage());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_TARGET_LATITUDE), rem.getLocation().getLatitude());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_TARGET_LONGITUDE), rem.getLocation().getLongitude());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_TARGET_RADIUS), rem.getCircularRadius());
+                                    resultIntent.putExtra(getResources().getString(R.string.NOTIFICATION_DISTANCE), distance);
 
                                     TaskStackBuilder stackBuilder = TaskStackBuilder.create(MainMap.this);
                                     stackBuilder.addParentStack(NotificationResult.class);

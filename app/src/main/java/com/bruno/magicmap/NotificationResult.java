@@ -66,16 +66,16 @@ public class NotificationResult extends ActionBarActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            notificationName = extras.getString("notificationName");
-            notificationMessage = extras.getString("notificationMessage");
-            targetAddress = extras.getString("targetAddress");
-            targetName = extras.getString("targetName");
-            targetLatitude = extras.getDouble("targetLatitude");
-            targetLongitude = extras.getDouble("targetLongitude");
-            targetRadius = extras.getFloat("targetRadius");
-            userLatitude = extras.getDouble("userLatitude");
-            userLongitude = extras.getDouble("userLongitude");
-            distance = extras.getFloat("distance");
+            notificationName = extras.getString(getResources().getString(R.string.NOTIFICATION_NAME));
+            notificationMessage = extras.getString(getResources().getString(R.string.NOTIFICATION_MESSAGE));
+            targetAddress = extras.getString(getResources().getString(R.string.NOTIFICATION_TARGET_ADDRESS));
+            targetName = extras.getString(getResources().getString(R.string.NOTIFICATION_TARGET_NAME));
+            targetLatitude = extras.getDouble(getResources().getString(R.string.NOTIFICATION_TARGET_LATITUDE));
+            targetLongitude = extras.getDouble(getResources().getString(R.string.NOTIFICATION_TARGET_LONGITUDE));
+            targetRadius = extras.getFloat(getResources().getString(R.string.NOTIFICATION_TARGET_RADIUS));
+            userLatitude = extras.getDouble(getResources().getString(R.string.NOTIFICATION_USER_LATITUDE));
+            userLongitude = extras.getDouble(getResources().getString(R.string.NOTIFICATION_USER_LONGITUDE));
+            distance = extras.getFloat(getResources().getString(R.string.NOTIFICATION_DISTANCE));
 
             notNameText.setText(notificationName);
             notMessageText.setText(notificationMessage);
