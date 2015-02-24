@@ -44,11 +44,7 @@ public class WelcomeScreenActivity extends Activity {
         setContentView( R.layout.welcome_screen_layout );
 
         userLocation = (TextView) findViewById(R.id.textCurrentLocation);
-
-        SharedPreferences savedUserLocation = getSharedPreferences(getResources().getString(R.string.SAVED_USER_LOCATION), MODE_PRIVATE);
-        userLatitude = savedUserLocation.getLong(Double.longBitsToDouble(getResources().getString(R.string.SAVED_USER_LATITUDE), 0.0));
-        userLongitude = savedUserLocation.getLong(Double.longBitsToDouble(getResources().getString(R.string.SAVED_USER_LONGITUDE), 0.0));
-        userAccuracy = savedUserLocation.getLong(Double.longBitsToDouble(getResources().getString(R.string.SAVED_USER_ACCURACY), 0.0));
+        loadUserLocation();
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapWelcome)).getMap();
         map.getUiSettings().setZoomControlsEnabled(true);
@@ -74,11 +70,25 @@ public class WelcomeScreenActivity extends Activity {
         super.onResume();
         loadLocationList();
         loadReminderList();
+        loadUserLocation();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    protected void loadUserLocation() {
+        SharedPreferences savedUserLocation = getSharedPreferences(getResources().getString(R.string.SAVED_USER_LOCATION), MODE_PRIVATE);
+        userLatitude = Double.longBitsToDouble(savedUserLocation.getLong(getResources().getString(R.string.SAVED_USER_LATITUDE), 0));
+        userLongitude = Double.longBitsToDouble(savedUserLocation.getLong(getResources().getString(R.string.SAVED_USER_LONGITUDE), 0));
+        userAccuracy = Double.longBitsToDouble(savedUserLocation.getLong(getResources().getString(R.string.SAVED_USER_ACCURACY), 0));
+
+        String latText = String.valueOf(userLatitude);
+        String.format(latText, "%.2f");
+        String lonText = String.valueOf(userLongitude);
+        String.format(lonText, "%.2f");
+        userLocation.setText(latText + ", " + lonText);
     }
 
     protected void loadReminderList() {

@@ -13,6 +13,7 @@ public class Reminder {
     private String message;
     private float circularRadius;
     private int delayTime;
+    private boolean notify;
 
     private Geofence.Builder fencer;
     //private Geofence geofence;
@@ -24,6 +25,17 @@ public class Reminder {
         circularRadius = startCircularRadius;
         delayTime = startDelayTime;
         setGeofence();
+        notify = true;
+    }
+
+    public Reminder (MyLocation startLocation, String startName, String startMessage, float startCircularRadius) {
+        location = new MyLocation(startLocation);
+        name = startName;
+        message = startMessage;
+        circularRadius = startCircularRadius;
+        delayTime = 0;
+        setGeofence();
+        notify = true;
     }
 
     public void setLocation(MyLocation l) {
@@ -48,6 +60,10 @@ public class Reminder {
     public void setDelayTime (int dt) {
         delayTime = dt;
         setGeofence();
+    }
+
+    public void setNotify(boolean n) {
+        notify = n;
     }
 
     private void setGeofence() {
@@ -85,6 +101,10 @@ public class Reminder {
 
     public Geofence.Builder getGeofenceBuilder() {
         return fencer;
+    }
+
+    public boolean getNotify() {
+        return notify;
     }
 
     @Override

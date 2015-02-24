@@ -29,6 +29,7 @@
     <string name="SAVED_USER_LATITUDE">SAVED_USER_LATITUDE</string>
     <string name="SAVED_USER_LONGITUDE">SAVED_USER_LONGITUDE</string>
     <string name="SAVED_USER_ACCURACY">SAVED_USER_ACCURACY</string>
+    <string name="title_activity_notification_result">NotificationResult</string>
 
 
 </resources>

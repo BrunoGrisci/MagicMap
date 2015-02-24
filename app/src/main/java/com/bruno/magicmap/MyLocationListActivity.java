@@ -94,7 +94,10 @@ public class MyLocationListActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
-
+                originCam = CameraUpdateFactory.newLatLng(new LatLng(arrayMyLocations.get(position).getLatitude(), arrayMyLocations.get(position).getLongitude()));
+                map.moveCamera(originCam);
+                originZoom = CameraUpdateFactory.zoomTo(17);
+                map.animateCamera(originZoom);
             }
         });
 

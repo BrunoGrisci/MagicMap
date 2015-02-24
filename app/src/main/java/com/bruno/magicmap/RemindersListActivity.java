@@ -72,6 +72,10 @@ public class RemindersListActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
+                originCam = CameraUpdateFactory.newLatLng(new LatLng(arrayMyReminders.get(position).getLocation().getLatitude(), arrayMyReminders.get(position).getLocation().getLongitude()));
+                map.moveCamera(originCam);
+                originZoom = CameraUpdateFactory.zoomTo(17);
+                map.animateCamera(originZoom);
 
             }
         });

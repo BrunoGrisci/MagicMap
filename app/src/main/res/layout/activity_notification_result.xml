@@ -11,7 +11,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_weight="7"
+            android:layout_weight="2"
             android:layout_width="fill_parent"
             android:layout_height="0dp">
 
@@ -21,7 +21,7 @@
                 android:layout_weight="1">
 
                 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/mapWelcome"
+                    android:id="@+id/mapNotification"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:name="com.google.android.gms.maps.MapFragment"/>
@@ -36,26 +36,37 @@
             android:layout_height="0dp">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:layout_weight="3"
                 android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="0dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Current Location: "
-                    android:id="@+id/labelCurrentLocation" />
+                    android:scrollbars="vertical"
+                    android:fillViewport="true">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/notNameText" />
+                </ScrollView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/textCurrentLocation" />
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:scrollbars="vertical"
+                    android:fillViewport="true">
 
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/notMessageText" />
+                </ScrollView>
             </LinearLayout>
 
             <LinearLayout
@@ -64,10 +75,21 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-                <TextClock
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/textClock" />
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Distance until target: "
+                    android:id="@+id/labelDistance" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/textDistance" />
+
             </LinearLayout>
 
         </LinearLayout>
