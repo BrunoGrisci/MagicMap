@@ -14,6 +14,7 @@ public class Reminder {
     private float circularRadius;
     private int delayTime;
     private boolean notify;
+    private long ID;
 
     private Geofence.Builder fencer;
     //private Geofence geofence;
@@ -26,6 +27,7 @@ public class Reminder {
         delayTime = startDelayTime;
         setGeofence();
         notify = true;
+        ID = System.nanoTime();
     }
 
     public Reminder (MyLocation startLocation, String startName, String startMessage, float startCircularRadius) {
@@ -36,6 +38,7 @@ public class Reminder {
         delayTime = 0;
         setGeofence();
         notify = true;
+        ID = System.nanoTime();
     }
 
     public void setLocation(MyLocation l) {
@@ -105,6 +108,10 @@ public class Reminder {
 
     public boolean getNotify() {
         return notify;
+    }
+
+    public long getID() {
+        return ID;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class NotificationResult extends ActionBarActivity {
     private String targetName;
     private Double targetLatitude;
     private Double targetLongitude;
-    private Double targetRadius;
+    private float targetRadius;
     private Double userLatitude;
     private Double userLongitude;
     private float distance;
@@ -72,7 +72,7 @@ public class NotificationResult extends ActionBarActivity {
             targetName = extras.getString("targetName");
             targetLatitude = extras.getDouble("targetLatitude");
             targetLongitude = extras.getDouble("targetLongitude");
-            targetRadius = extras.getDouble("targetRadius");
+            targetRadius = extras.getFloat("targetRadius");
             userLatitude = extras.getDouble("userLatitude");
             userLongitude = extras.getDouble("userLongitude");
             distance = extras.getFloat("distance");
@@ -122,6 +122,8 @@ public class NotificationResult extends ActionBarActivity {
         circle.center(position);
         circle.radius(targetRadius);
         map.addCircle(circle);
+
+        System.out.println(targetRadius);
 
         LatLng userPosition = new LatLng(userLatitude, userLongitude);
         map.addMarker(new MarkerOptions()

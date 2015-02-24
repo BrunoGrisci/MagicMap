@@ -115,10 +115,10 @@ public class MyLocationListActivity extends Activity {
 
                                 loadReminderList();
                                 if (!RemindersListActivity.arrayMyReminders.isEmpty()) {
-                                    String locName = arrayMyLocations.get(position).getName();
+                                    long locID = arrayMyLocations.get(position).getID();
                                     ArrayList<Reminder> delRem = new ArrayList<Reminder>();
                                     for (Reminder rem : RemindersListActivity.arrayMyReminders) {
-                                        if (rem.getLocation().getName().equals(locName)) {
+                                        if (rem.getLocation().getID() == locID) {
                                             delRem.add(rem);
                                         }
                                     }

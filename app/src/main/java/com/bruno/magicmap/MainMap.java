@@ -66,6 +66,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
 
                     loadLocationList();
                     loadReminderList();
+
                     if (!RemindersListActivity.arrayMyReminders.isEmpty()) {
                         float distance;
                         Location target = new Location(userLocation);
@@ -89,7 +90,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                                     System.out.println(rem.getName());
                                     System.out.println(rem.getNotify());
 
-                                    int index = RemindersListActivity.arrayMyReminders.indexOf(rem);
+                                    int remID = (int) rem.getID();
 
                                     Notification.Builder mBuilder =
                                             new Notification.Builder(MainMap.this)
@@ -115,12 +116,12 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                                     TaskStackBuilder stackBuilder = TaskStackBuilder.create(MainMap.this);
                                     stackBuilder.addParentStack(NotificationResult.class);
                                     stackBuilder.addNextIntent(resultIntent);
-                                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(index, PendingIntent.FLAG_UPDATE_CURRENT);
+                                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(remID, PendingIntent.FLAG_UPDATE_CURRENT);
                                     mBuilder.setContentIntent(resultPendingIntent);
                                     NotificationManager mNotificationManager =
                                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                                    mNotificationManager.notify(index, mBuilder.build());
+                                    mNotificationManager.notify(remID, mBuilder.build());
 
                                 }
                             }

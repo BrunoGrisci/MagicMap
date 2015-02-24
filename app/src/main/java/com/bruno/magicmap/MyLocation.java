@@ -11,12 +11,14 @@ public class MyLocation {
     private double longitude;
     private String name;
     private String address;
+    private long ID;
 
     public MyLocation (double startLatitude, double startLongitude, String startName) {
         latitude = startLatitude;
         longitude = startLongitude;
         name = startName;
         address = "";
+        ID = System.nanoTime();
     }
 
     public MyLocation (double startLatitude, double startLongitude, String startName, String startAddress) {
@@ -24,6 +26,7 @@ public class MyLocation {
         longitude = startLongitude;
         name = startName;
         address = startAddress;
+        ID = System.nanoTime();
     }
 
     public MyLocation (MyLocation startMyLocal) {
@@ -31,6 +34,7 @@ public class MyLocation {
         longitude = startMyLocal.getLongitude();
         name = startMyLocal.getName();
         address = startMyLocal.getAddress();
+        ID = startMyLocal.getID();
     }
 
     public String getName() {
@@ -47,6 +51,10 @@ public class MyLocation {
 
     public String getAddress() {
         return address;
+    }
+
+    public long getID() {
+        return ID;
     }
 
     public void setLongitude(double lon) {
