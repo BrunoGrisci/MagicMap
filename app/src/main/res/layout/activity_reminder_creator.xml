@@ -21,7 +21,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Name"
+                android:text="@string/name_label"
                 android:id="@+id/nameReminderLabel" />
 
             <EditText
@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Message"
+                android:text="@string/message_label"
                 android:id="@+id/messageReminderLabel" />
 
             <EditText
@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Location"
+                android:text="@string/location_label"
                 android:id="@+id/locationReminderLabel" />
 
             <Spinner
@@ -84,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Distance around location in metres"
+                android:text="@string/radius_label"
                 android:id="@+id/circularRadiusReminderLabel" />
 
             <EditText
@@ -106,7 +106,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Time after entering location"
+                android:text="@string/delaytime_label"
                 android:id="@+id/delayTimeReminderLabel" />
 
             <EditText
@@ -127,7 +127,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="SAVE REMINDER"
+                android:text="@string/save_reminder_button"
                 android:id="@+id/saveRemiderButton" />
         </LinearLayout>
     </LinearLayout>

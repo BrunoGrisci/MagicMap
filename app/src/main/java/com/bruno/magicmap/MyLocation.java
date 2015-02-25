@@ -82,7 +82,6 @@ public class MyLocation {
 
     @Override
     public String toString() {
-        //return name + "\n" + address + "\n" + "Latitude: " + String.valueOf(latitude) + " Longitude: " + String.valueOf(longitude);
         return name + "\n" + address;
     }
 }

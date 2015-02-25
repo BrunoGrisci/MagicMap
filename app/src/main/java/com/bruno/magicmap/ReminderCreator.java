@@ -16,9 +16,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-
 public class ReminderCreator extends ActionBarActivity {
 
     private EditText nameReminderEdit;
@@ -86,13 +83,13 @@ public class ReminderCreator extends ActionBarActivity {
                     setResult(RESULT_OK, intent);
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "First complete all fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.fields_first_message), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         if (MyLocationListActivity.arrayMyLocations.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "First create a location.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.location_first_message), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(context, MyLocationListActivity.class);
             startActivity(intent);
         }

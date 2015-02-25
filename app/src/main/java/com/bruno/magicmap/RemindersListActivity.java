@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bruno.magicmap.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -85,10 +84,10 @@ public class RemindersListActivity extends Activity {
             public boolean onItemLongClick(AdapterView<?> parent, final View view,
                                         final int position, long id) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(RemindersListActivity.this);
-                builder1.setTitle("Delete reminder?");
-                builder1.setMessage("The location of this reminder won't be affected.");
+                builder1.setTitle(getResources().getString(R.string.delete_reminder_question));
+                builder1.setMessage(getResources().getString(R.string.delete_reminder_info));
                 builder1.setCancelable(true);
-                builder1.setPositiveButton("Delete",
+                builder1.setPositiveButton(getResources().getString(R.string.delete_button),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
@@ -100,7 +99,7 @@ public class RemindersListActivity extends Activity {
                                 dialog.cancel();
                             }
                         });
-                builder1.setNegativeButton("Cancel",
+                builder1.setNegativeButton(getResources().getString(R.string.cancel_button),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

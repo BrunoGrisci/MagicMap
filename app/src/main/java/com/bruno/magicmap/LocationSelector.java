@@ -1,7 +1,6 @@
 package com.bruno.magicmap;
 
 import android.annotation.TargetApi;
-import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -91,7 +90,7 @@ public class LocationSelector extends ActionBarActivity {
             public void onMapClick(LatLng point) {
                 if (nameEdit.getText().toString().isEmpty()) {
                     map.clear();
-                    Toast.makeText(getApplicationContext(), "Give name first.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.name_first_message), Toast.LENGTH_SHORT).show();
                     saveButton.setEnabled(false);
                 } else {
                     map.clear();
@@ -125,13 +124,14 @@ public class LocationSelector extends ActionBarActivity {
     }
 
     private void markMap(String name, double latitude, double longitude) {
+        //Add the marks on the map
         Geocoder geocoder = new Geocoder(LocationSelector.this, Locale.getDefault());
         String address = "";
         try {
             List<Address> addLines;
             addLines = geocoder.getFromLocation(latitude, longitude, 1);
             if (addLines.isEmpty()) {
-               address = "Unknown";
+               address = getResources().getString(R.string.unknown_address);
             }
             else {
                 for (int i = 0; i < addLines.get(0).getMaxAddressLineIndex(); i++) {

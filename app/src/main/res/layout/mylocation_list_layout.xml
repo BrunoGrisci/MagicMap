@@ -30,7 +30,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="80dp"
-                android:text="NEW LOCATION"
+                android:text="@string/new_location_button"
                 android:onClick="sendMessage"
                 android:id="@+id/newLocationButton"
                 android:layout_weight="1"/>

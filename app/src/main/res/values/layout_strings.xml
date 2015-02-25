@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="my_position">My position</string>
+    <string name="delete_reminder_question">Delete reminder?</string>
+    <string name="delete_reminder_info">The location of this reminder won\'t be affected.</string>
+    <string name="delete_location_question">Delete location?</string>
+    <string name="delete_location_info">This will also delete all reminders in this location.</string>
+    <string name="delete_button">Delete</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="in">\ in\ </string>
+
+    <string name="location_name_label">Location name:\ </string>
+    <string name="save_location_button">SAVE LOCATION</string>
+
+    <string name="name_label">Name</string>
+    <string name="message_label">Message</string>
+    <string name="location_label">Location</string>
+    <string name="radius_label">Distance around location in metres</string>
+    <string name="delaytime_label">Time after entering location</string>
+    <string name="save_reminder_button">SAVE REMINDER</string>
+
+    <string name="new_location_button">NEW LOCATION</string>
+    <string name="new_reminder_button">NEW REMINDER</string>
+
+    <string name="current_location_label">Current Location:\ </string>
+    <string name="distance_until_target_label">Distance until target:\ </string>
+
+    <string name="name_first_message">Give name first.</string>
+    <string name="unknown_address">Unknown</string>
+    <string name="fields_first_message">First complete all fields.</string>
+    <string name="location_first_message">First create a location.</string>
+
+</resources>

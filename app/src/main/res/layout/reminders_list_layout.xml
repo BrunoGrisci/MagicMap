@@ -31,7 +31,7 @@
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:text="NEW REMINDER"
+            android:text="@string/new_reminder_button"
             android:onClick="sendMessage"
             android:id="@+id/newReminderButton" />
 

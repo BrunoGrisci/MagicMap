@@ -1,6 +1,6 @@
 package com.bruno.magicmap;
 
-import com.bruno.magicmap.MyLocation;
+
 import com.google.android.gms.location.Geofence;
 
 /**
@@ -78,8 +78,6 @@ public class Reminder {
         fencer.setExpirationDuration(Geofence.NEVER_EXPIRE);
         fencer.setNotificationResponsiveness(0);
         fencer.setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER);
-
-        //geofence = fencer.build();
     }
 
     public MyLocation getLocation() {

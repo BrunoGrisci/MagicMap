@@ -1,6 +1,5 @@
 package com.bruno.magicmap;
 
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -128,7 +127,7 @@ public class NotificationResult extends ActionBarActivity {
         LatLng userPosition = new LatLng(userLatitude, userLongitude);
         map.addMarker(new MarkerOptions()
                 .position(userPosition)
-                .title("My position")
+                .title(getResources().getString(R.string.my_position))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         originCam = CameraUpdateFactory.newLatLng(position);

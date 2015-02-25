@@ -1,45 +1,32 @@
 package com.bruno.magicmap;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bruno.magicmap.R;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileOutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by bruno on 20/02/15.
@@ -106,10 +93,10 @@ public class MyLocationListActivity extends Activity {
             public boolean onItemLongClick(AdapterView<?> parent, final View view,
                                            final int position, long id) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(MyLocationListActivity.this);
-                builder1.setTitle("Delete location?");
-                builder1.setMessage("This will also delete all reminders in this location.");
+                builder1.setTitle(getResources().getString(R.string.delete_location_question));
+                builder1.setMessage(getResources().getString(R.string.delete_location_info));
                 builder1.setCancelable(true);
-                builder1.setPositiveButton("Delete",
+                builder1.setPositiveButton(getResources().getString(R.string.delete_button),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
@@ -134,7 +121,7 @@ public class MyLocationListActivity extends Activity {
                                 dialog.cancel();
                             }
                         });
-                builder1.setNegativeButton("Cancel",
+                builder1.setNegativeButton(getResources().getString(R.string.cancel_button),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

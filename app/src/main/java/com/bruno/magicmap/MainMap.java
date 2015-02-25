@@ -41,6 +41,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //It creates the tabs
         TabHost mTabHost = getTabHost();
         mTabHost.addTab(mTabHost.newTabSpec("first").setIndicator(getResources().getString(R.string.tabWelcomeScreen)).setContent(new Intent(this, WelcomeScreenActivity.class )));
         mTabHost.addTab(mTabHost.newTabSpec("second").setIndicator(getResources().getString(R.string.tabMyLocationList)).setContent(new Intent(this, MyLocationListActivity.class )));
@@ -67,6 +68,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                     loadLocationList();
                     loadReminderList();
 
+                    //Here the notifications are created
                     if (!RemindersListActivity.arrayMyReminders.isEmpty()) {
                         float distance;
                         Location target = new Location(userLocation);
@@ -78,20 +80,10 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                             distance = userLocation.distanceTo(target);
 
                             if (distance <= rem.getCircularRadius()) {
-
                                 //rem.setNotify(true);
-                                System.out.println(rem.getName());
-                                System.out.println(rem.getNotify());
-
                                 if (rem.getNotify()) {
-
                                     rem.setNotify(false);
-
-                                    System.out.println(rem.getName());
-                                    System.out.println(rem.getNotify());
-
                                     int remID = (int) rem.getID();
-
                                     Notification.Builder mBuilder =
                                             new Notification.Builder(MainMap.this)
                                                     .setSmallIcon(R.drawable.icon2)
@@ -130,8 +122,6 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
                             }
 
                             saveReminderList();
-                            System.out.println(rem.getName());
-                            System.out.println(rem.getNotify());
 
                         }
                     }
@@ -145,15 +135,10 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
 
             public void onProviderDisabled(String provider) {}
         };
-
-        //buildGoogleApiClient();
-        //mGoogleApiClient.connect();
         userLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 0, 0, locationListener);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
-        //System.out.println(userLocation);
 
     }
 
@@ -221,6 +206,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
     }
 
     protected void loadReminderList() {
+        //It loads the current list of reminders
         SharedPreferences savedReminderList = getSharedPreferences(getResources().getString(R.string.SAVED_REMINDER_LIST), MODE_PRIVATE);
         RemindersListActivity.jsonRemindersList = savedReminderList.getString(getResources().getString(R.string.SAVED_REMINDER_LIST), null);
         if (RemindersListActivity.jsonRemindersList != null) {
@@ -232,6 +218,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
     }
 
     protected void loadLocationList() {
+        //It loads the current list of locations
         SharedPreferences savedLocationList = getSharedPreferences(getResources().getString(R.string.SAVED_LOCATION_LIST), MODE_PRIVATE);
         MyLocationListActivity.jsonMyLocationsList = savedLocationList.getString(getResources().getString(R.string.SAVED_LOCATION_LIST), null);
         if (MyLocationListActivity.jsonMyLocationsList != null) {
@@ -243,6 +230,7 @@ public class MainMap extends TabActivity implements GoogleApiClient.ConnectionCa
     }
 
     protected void saveReminderList() {
+        //It saves the new list of reminders
         String jsonRemindersList;
         jsonRemindersList = gson.toJson(RemindersListActivity.arrayMyReminders);
 

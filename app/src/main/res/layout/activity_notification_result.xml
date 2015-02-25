@@ -80,7 +80,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Distance until target: "
+                    android:text="@string/distance_until_target_label"
                     android:id="@+id/labelDistance" />
 
                 <TextView
